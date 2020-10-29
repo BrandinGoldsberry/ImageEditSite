@@ -2,6 +2,9 @@ var imageEdit = {
     currentImage: {}
 }
 
+let height = 50
+let width = 50
+
 window.onload = (ev) => {
     document.getElementById("upload-image").addEventListener("change", (imageEvent) => {
         imageEdit.currentImage = imageEvent.target.files[0];
@@ -11,7 +14,14 @@ window.onload = (ev) => {
                 document.getElementById("preview").src = fr.result;
             }
             fr.readAsDataURL(imageEvent.target.files[0]);
+            new Compressor(imageEdit.currentImage, {
+                maxHeight: height,
+                maxWidth: width,
+                success(result) {
+                    imageEdit.currentImage = result
+                    document.getElementById("preview").src = URL.createObjectURL(result);
+                }
+            })
         }
-    
     })
 };
