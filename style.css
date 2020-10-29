@@ -1,1 +1,20 @@
-. 
+*{
+    margin: 0 auto;
+    padding: 0;
+}
+
+#gradientWrap{
+    text-align: center;
+    width: 100%;
+}
+
+#gradientWrap img{
+    margin-top: 30px;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: fit-content;
+}
