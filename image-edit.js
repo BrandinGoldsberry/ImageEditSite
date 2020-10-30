@@ -24,7 +24,7 @@ window.onload = (ev) => {
                 compressorHeightLabel.innerText = `Height: ${document.getElementById("preview").height}`
                 compressorWidthSlider.max = document.getElementById("preview").width
                 compressorWidthSlider.value = document.getElementById("preview").width
-                compressorWidthLabel.innerText = `Height: ${document.getElementById("preview").width}`
+                compressorWidthLabel.innerText = `Width: ${document.getElementById("preview").width}`
             }
             fr.readAsDataURL(imageEvent.target.files[0]);
         }
