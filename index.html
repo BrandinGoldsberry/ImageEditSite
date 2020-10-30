@@ -12,6 +12,12 @@
     <label for="uploaded-image">Image to Edit</label>
     <input id="upload-image" type="file" name="uploaded-image"></input>
     <img id="preview" src="" alt="">
+    <div class="compressor-controls">
+        <label for="compressorHeight" id="compressorHeightLabel">Height:</label>
+        <input type="range" min="50" class="slider" id="compressorHeight">
+        <label for="compressorWidth" id="compressorWidthLabel">Width:</label>
+        <input type="range" min="50" class="slider" id="compressorWidth">
+    </div>
     <script src="compressor.js"></script>
     <script src="image-edit.js"></script>
 </body>
