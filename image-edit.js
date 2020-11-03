@@ -11,6 +11,14 @@ let height = 50
 let width = 50
 
 const compressorBtn = document.getElementById("compressorBtn")
+let brightness = 10;
+let contrast = 10;
+let sepia = 10;
+let saturation = 10;
+const camanBtn = document.getElementById("camanBtn")
+const sepiaBtn = document.getElementById("sepiaFilter")
+const bwBtn = document.getElementById("bwFilter")
+const prettifyBtn = document.getElementById("prettifyFilter")
 
 window.onload = (ev) => {
     document.getElementById("upload-image").addEventListener("change", (imageEvent) => {
@@ -61,3 +69,40 @@ function changeCompressorWidth(evt) {
 compressorBtn.addEventListener('click', compressor)
 compressorHeightSlider.addEventListener('change', changeCompressorHeight)
 compressorWidthSlider.addEventListener('change', changeCompressorWidth)
+
+function camanApply() {
+    Caman("#preview", function () {
+        this.brightness(brightness)
+        this.contrast(contrast)
+        this.sepia(sepia)
+        this.saturation(saturation)
+        this.render()
+    })
+}
+
+function sepiaFilter() {
+    Caman("#preview", function () {
+        this.sepia(100)
+        this.render()
+    })
+}
+
+function prettifyFilter() {
+    Caman("#preview", function () {
+        this.contrast(5)
+        this.saturation(15)
+        this.render()
+    })
+}
+
+function bwFilter() {
+    Caman("#preview", function () {
+        this.greyscale()
+        this.render()
+    })
+}
+
+camanBtn.addEventListener('click', camanApply)
+sepiaBtn.addEventListener("click", sepiaFilter)
+bwBtn.addEventListener("click", bwFilter)
+prettifyBtn.addEventListener("click", prettifyFilter)
