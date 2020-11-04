@@ -1,6 +1,57 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.compressor-controls {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.compressor-controls > div {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.compressor-controls > div > input {
+    width: 12%;
+}
+
+label, input, button {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input[type='file'] {
+    color: transparent;
+    display: inline;
+  }
+
+h1 {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 #preview {
     max-width: 1000px;
     max-height: 1000px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.25);
 }
 #edit-image {
     display: none;

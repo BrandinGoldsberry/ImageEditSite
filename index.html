@@ -9,21 +9,24 @@
 </head>
 
 <body>
-    <div class="compressor-controls">
-        <div>
-            <button id="compressorBtn">Compressor Apply</button>
-            <label for="uploaded-image">Image to Edit</label>
-            <input id="upload-image" type="file" name="uploaded-image"></input>
+    <section class="content">
+        <h1>Img Edit Dot Net</h1>
+        <div class="compressor-controls">
+            <div>
+                <button id="compressorBtn">Compressor Apply</button>
+                <label for="uploaded-image">Image to Edit</label>
+                <input id="upload-image" type="file" name="uploaded-image"></input>
+            </div>
+            <label for="compressorHeight" id="compressorHeightLabel">Height:</label>
+            <input type="range" min="50" class="slider" id="compressorHeight">
+            <label for="compressorWidth" id="compressorWidthLabel">Width:</label>
+            <input type="range" min="50" class="slider" id="compressorWidth">
         </div>
-        <label for="compressorHeight" id="compressorHeightLabel">Height:</label>
-        <input type="range" min="50" class="slider" id="compressorHeight">
-        <label for="compressorWidth" id="compressorWidthLabel">Width:</label>
-        <input type="range" min="50" class="slider" id="compressorWidth">
-    </div>
-    <img id="preview" src="" alt="">
-    <img id="edit-image" src="" alt="">
-    <script src="compressor.js"></script>
-    <script src="image-edit.js"></script>
+        <img id="preview" src="" alt="">
+        <img id="edit-image" src="" alt="">
+        <script src="compressor.js"></script>
+        <script src="image-edit.js"></script>
+    </section>
 </body>
 
 </html>
