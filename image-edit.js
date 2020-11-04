@@ -2,15 +2,33 @@ var imageEdit = {
     currentImage: {}
 }
 
-const compressorHeightSlider = document.getElementById("compressorHeight")
-const compressorWidthSlider = document.getElementById("compressorWidth")
-const compressorHeightLabel = document.getElementById("compressorHeightLabel")
-const compressorWidthLabel = document.getElementById("compressorWidthLabel")
+const compressorHeightSlider = document.getElementById("compressorHeight");
+const compressorWidthSlider = document.getElementById("compressorWidth");
+const compressorHeightLabel = document.getElementById("compressorHeightLabel");
+const compressorWidthLabel = document.getElementById("compressorWidthLabel");
 
-let height = 50
-let width = 50
+var height = 50;
+var width = 50;
 
 const compressorBtn = document.getElementById("compressorBtn")
+
+
+const setVals = (fr) => {
+    //Display image for nice styling, allows for scaling without editing the real image
+    document.getElementById("preview").src = fr.result;
+    //Hidden real image that the editing and data comes from
+    document.getElementById("edit-image").src = fr.result;
+    document.getElementById("edit-image").onload = () => {
+        compressorHeightSlider.max = document.getElementById("edit-image").height;
+        compressorHeightSlider.value = document.getElementById("edit-image").height;
+        compressorHeightLabel.innerText = `Height: ${document.getElementById("edit-image").height}`;
+        compressorWidthSlider.max = document.getElementById("edit-image").width;
+        compressorWidthSlider.value = document.getElementById("edit-image").width;
+        compressorWidthLabel.innerText = `Width: ${document.getElementById("edit-image").width}`;
+        height = compressorWidthSlider.value = document.getElementById("edit-image").height;
+        width = compressorWidthSlider.value = document.getElementById("edit-image").width;
+    }
+}
 
 window.onload = (ev) => {
     document.getElementById("upload-image").addEventListener("change", (imageEvent) => {
@@ -18,13 +36,7 @@ window.onload = (ev) => {
         if (FileReader) {
             var fr = new FileReader();
             fr.onload = function () {
-                document.getElementById("preview").src = fr.result;
-                compressorHeightSlider.max = document.getElementById("preview").height
-                compressorHeightSlider.value = document.getElementById("preview").height
-                compressorHeightLabel.innerText = `Height: ${document.getElementById("preview").height}`
-                compressorWidthSlider.max = document.getElementById("preview").width
-                compressorWidthSlider.value = document.getElementById("preview").width
-                compressorWidthLabel.innerText = `Width: ${document.getElementById("preview").width}`
+               setVals(fr); 
             }
             fr.readAsDataURL(imageEvent.target.files[0]);
         }
@@ -38,26 +50,25 @@ function compressor() {
         success(result) {
             imageEdit.currentImage = result
             document.getElementById("preview").src = URL.createObjectURL(result);
-            compressorHeightSlider.max = document.getElementById("preview").height
-            compressorHeightSlider.value = document.getElementById("preview").height
-            compressorHeightLabel.innerText = `Height: ${document.getElementById("preview").height}`
-            compressorWidthSlider.max = document.getElementById("preview").width
-            compressorWidthSlider.value = document.getElementById("preview").width
-            compressorWidthLabel.innerText = `Width: ${document.getElementById("preview").width}`
+            document.getElementById("edit-image").src = URL.createObjectURL(result);
+            compressorHeightSlider.max = document.getElementById("edit-image").height;
+            compressorHeightSlider.value = document.getElementById("edit-image").height;
+            compressorHeightLabel.innerText = `Height: ${document.getElementById("edit-image").height}`;
+            compressorWidthSlider.max = document.getElementById("edit-image").width;
+            compressorWidthSlider.value = document.getElementById("edit-image").width;
+            compressorWidthLabel.innerText = `Width: ${document.getElementById("edit-image").width}`;
+            height = compressorWidthSlider.value = document.getElementById("edit-image").height;
+            width = compressorWidthSlider.value = document.getElementById("edit-image").width;
         }
     })
 }
 
-function changeCompressorHeight(evt) {
-    height = evt.target.value
-    compressorHeightLabel.innerText = `Height: ${height}`
-}
-
-function changeCompressorWidth(evt) {
-    width = evt.target.value
-    compressorWidthLabel.innerText = `Width: ${width}`
-}
-
 compressorBtn.addEventListener('click', compressor)
-compressorHeightSlider.addEventListener('change', changeCompressorHeight)
-compressorWidthSlider.addEventListener('change', changeCompressorWidth)
+compressorHeightSlider.addEventListener('change', (e) => {
+    height = e.target.value
+    compressorHeightLabel.innerText = `Height: ${height}`
+})
+compressorWidthSlider.addEventListener('change', (e) => {
+    width = e.target.value
+    compressorWidthLabel.innerText = `Width: ${width}`
+})
