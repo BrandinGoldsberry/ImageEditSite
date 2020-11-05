@@ -45,6 +45,9 @@ const camanBrightnessLabel = document.getElementById("camanBrightnessLabel")
 const camanContrastLabel = document.getElementById("camanContrastLabel")
 const camanSepiaLabel = document.getElementById("camanSepiaLabel")
 const camanSaturationLabel = document.getElementById("camanSaturationLabel")
+const sepiaBtn = document.getElementById("sepiaFilter")
+const bwBtn = document.getElementById("bwFilter")
+const prettifyBtn = document.getElementById("prettifyFilter")
 
 window.onload = (ev) => {
     document.getElementById("upload-image").addEventListener("change", (imageEvent) => {
@@ -132,3 +135,31 @@ camanSepia.addEventListener("change", changeCamanSepia)
 camanSaturation.addEventListener("change", changeCamanSaturation)
 
 camanBtn.addEventListener('click', camanApply)
+compressorBtn.addEventListener('click', compressor)
+
+function sepiaFilter() {
+    Caman("#preview", function () {
+        this.sepia(100)
+        this.render()
+    })
+}
+
+function prettifyFilter() {
+    Caman("#preview", function () {
+        this.contrast(5)
+        this.saturation(15)
+        this.render()
+    })
+}
+
+function bwFilter() {
+    Caman("#preview", function () {
+        this.greyscale()
+        this.render()
+    })
+}
+
+camanBtn.addEventListener('click', camanApply)
+sepiaBtn.addEventListener("click", sepiaFilter)
+bwBtn.addEventListener("click", bwFilter)
+prettifyBtn.addEventListener("click", prettifyFilter)
