@@ -5,3 +5,9 @@
 #edit-image {
     display: none;
 }
+img {
+    display: block;
+  
+    /* This rule is very important, please don't ignore this */
+    max-width: 100%;
+  }

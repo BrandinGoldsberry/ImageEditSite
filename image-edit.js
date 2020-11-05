@@ -72,3 +72,5 @@ compressorWidthSlider.addEventListener('change', (e) => {
     width = e.target.value
     compressorWidthLabel.innerText = `Width: ${width}`
 })
+
+//cropper stuff
