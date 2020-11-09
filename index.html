@@ -24,9 +24,24 @@
         </div>
         <img id="preview" src="" alt="">
         <img id="edit-image" src="" alt="">
-        <script src="compressor.js"></script>
-        <script src="image-edit.js"></script>
     </section>
+    <button id="sepiaFilter">Sepia Filter</button>
+    <button id="prettifyFilter">Prettify Filter</button>
+    <button id="bwFilter">Black and White Filter</button>
+    <section>
+        <label for="camanBrightness" id="camanBrightnessLabel">Brightness: 0</label>
+        <input type="range" min="-100" max="100" value="0" class="slider" id="camanBrightness">
+        <label for="camanContrast" id="camanContrastLabel">Contrast: 0</label>
+        <input type="range" min="-100" max="100" value="0" class="slider" id="camanContrast">
+        <label for="camanSepia" id="camanSepiaLabel">Sepia: 0</label>
+        <input type="range" min="-100" max="100" value="0" class="slider" id="camanSepia">
+        <label for="camanSaturation" id="camanSaturationLabel">Saturation: 0</label>
+        <input type="range" min="-100" max="100" value="0" class="slider" id="camanSaturation">
+        <button id="camanBtn">Caman Apply</button>
+    </section>
+    <script src="compressor.js"></script>
+    <script src="caman.js"></script>
+    <script src="image-edit.js"></script>
 </body>
 
 </html>

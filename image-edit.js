@@ -29,6 +29,25 @@ const setVals = (fr) => {
         width = compressorWidthSlider.value = document.getElementById("edit-image").width;
     }
 }
+let brightness = 0;
+let contrast = 0;
+let sepia = 0;
+let saturation = 0;
+
+const camanBtn = document.getElementById("camanBtn")
+
+const camanBrightness = document.getElementById("camanBrightness")
+const camanContrast = document.getElementById("camanContrast")
+const camanSepia = document.getElementById("camanSepia")
+const camanSaturation = document.getElementById("camanSaturation")
+
+const camanBrightnessLabel = document.getElementById("camanBrightnessLabel")
+const camanContrastLabel = document.getElementById("camanContrastLabel")
+const camanSepiaLabel = document.getElementById("camanSepiaLabel")
+const camanSaturationLabel = document.getElementById("camanSaturationLabel")
+const sepiaBtn = document.getElementById("sepiaFilter")
+const bwBtn = document.getElementById("bwFilter")
+const prettifyBtn = document.getElementById("prettifyFilter")
 
 window.onload = (ev) => {
     document.getElementById("upload-image").addEventListener("change", (imageEvent) => {
@@ -36,7 +55,7 @@ window.onload = (ev) => {
         if (FileReader) {
             var fr = new FileReader();
             fr.onload = function () {
-               setVals(fr); 
+                setVals(fr);
             }
             fr.readAsDataURL(imageEvent.target.files[0]);
         }
@@ -72,3 +91,75 @@ compressorWidthSlider.addEventListener('change', (e) => {
     width = e.target.value
     compressorWidthLabel.innerText = `Width: ${width}`
 })
+
+function camanApply() {
+    Caman("#preview", function () {
+        this.brightness(brightness)
+        this.contrast(contrast)
+        this.sepia(sepia)
+        this.saturation(saturation)
+        this.render()
+    })
+    Caman("#edit-image", function () {
+        this.brightness(brightness)
+        this.contrast(contrast)
+        this.sepia(sepia)
+        this.saturation(saturation)
+        this.render()
+    })
+}
+
+function changeCamanBrightness(e) {
+    brightness = e.target.value
+    camanBrightnessLabel.innerText = `Brightness: ${brightness}`
+}
+
+function changeCamanContrast(e) {
+    contrast = e.target.value
+    camanContrastLabel.innerText = `Contrast: ${contrast}`
+}
+
+function changeCamanSepia(e) {
+    sepia = e.target.value
+    camanSepiaLabel.innerText = `Sepia: ${sepia}`
+}
+
+function changeCamanSaturation(e) {
+    saturation = e.target.value
+    camanSaturationLabel.innerText = `Saturation: ${saturation}`
+}
+
+camanBrightness.addEventListener("change", changeCamanBrightness)
+camanContrast.addEventListener("change", changeCamanContrast)
+camanSepia.addEventListener("change", changeCamanSepia)
+camanSaturation.addEventListener("change", changeCamanSaturation)
+
+camanBtn.addEventListener('click', camanApply)
+compressorBtn.addEventListener('click', compressor)
+
+function sepiaFilter() {
+    Caman("#preview", function () {
+        this.sepia(100)
+        this.render()
+    })
+}
+
+function prettifyFilter() {
+    Caman("#preview", function () {
+        this.contrast(5)
+        this.saturation(15)
+        this.render()
+    })
+}
+
+function bwFilter() {
+    Caman("#preview", function () {
+        this.greyscale()
+        this.render()
+    })
+}
+
+camanBtn.addEventListener('click', camanApply)
+sepiaBtn.addEventListener("click", sepiaFilter)
+bwBtn.addEventListener("click", bwFilter)
+prettifyBtn.addEventListener("click", prettifyFilter)
